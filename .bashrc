@@ -34,22 +34,29 @@ export PATH=/shared/why16gzl/Downloads/Downloads/cuda_113/bin:$PATH
 export LD_LIBRARY_PATH=/shared/why16gzl/Downloads/Downloads/cuda_113/lib64
 export CUDA_HOME=/shared/why16gzl/Downloads/Downloads/cuda_113
 
+#huggingface
+export HUGGINGFACE_HUB_CACHE=/shared/why16gzl/cache/huggingface/hub/
+
+#torch
 export TORCH_EXTENSIONS_DIR=/shared/why16gzl/cache/torch_extensions/py38_cu102 # for deepspeed
 export TORCH_HOME=/shared/why16gzl/cache/torch/hub/
 
+#maven
 export M2_HOME=/shared/why16gzl/Downloads/apache-maven-3.6.3
 export M2=$M2_HOME/bin
 export MAVEN_OPTS=-Xms256m
 export PATH=$M2:$PATH 
 
-
+#java
 export JAVA_HOME=/shared/why16gzl/Downloads/jdk-14.0.2
 export PATH=$PATH:/shared/why16gzl/Downloads/jdk-14.0.2/bin
+
 #Gurobi
 export GUROBI_HOME="/shared/why16gzl/Downloads/gurobi811/linux64"
 export PATH="${PATH}:${GUROBI_HOME}/bin"
 export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${GUROBI_HOME}/lib"
 export GRB_LICENSE_FILE=/home1/w/why16gzl/gurobi.lic
 
+#docker
 export PATH=/home1/w/why16gzl/bin:$PATH
 export DOCKER_HOST=unix:///run/user/56512/docker.sock
