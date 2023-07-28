@@ -8,14 +8,13 @@ conda create --prefix ./a6000 python=3.8 pytorch cudatoolkit=11.1 -c pytorch -c 
 (I used the wrong cuda version at first)
 
 ## cuda
-
 ```
 wget https://developer.download.nvidia.com/compute/cuda/11.3.0/local_installers/cuda_11.3.0_465.19.01_linux.run
 sh cuda_11.3.0_465.19.01_linux.run
 ```
-(note: ONLY install CUDA Toolkit 11.3, no need to install Driver, CUDA Samples 11.3, CUDA Demo Suite 11.3 CUDA Documentation.
-Go to CUDA Toolkit, change Toolkit Install Path & Library install path ==> /shared/why16gzl/Downloads/Downloads/cuda_113, unselect all other stuff)
-
+(note: ONLY install CUDA Toolkit 11.3, no need to install Driver, CUDA Samples 11.3, CUDA Demo Suite 11.3, CUDA Documentation 11.3.
+Go to Options -> Toolkit Options, Change Toolkit Install Path ==> /shared/why16gzl/Downloads/Downloads/cuda_113, unselect all other stuff
+Probably need to go to Options -> Library install path (Blank for system default), and change it to the same custom path. Not sure about this.)
 ```
 conda install pytorch==1.12.0 torchvision==0.13.0 torchaudio==0.12.0 cudatoolkit=11.3 -c pytorch
 ```
