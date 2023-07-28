@@ -15,9 +15,6 @@ sh cuda_11.3.0_465.19.01_linux.run
 (note: ONLY install CUDA Toolkit 11.3, no need to install Driver, CUDA Samples 11.3, CUDA Demo Suite 11.3, CUDA Documentation 11.3.
 Go to Options -> Toolkit Options, Change Toolkit Install Path ==> /shared/why16gzl/Downloads/Downloads/cuda_113, unselect all other stuff
 Probably need to go to Options -> Library install path (Blank for system default), and change it to the same custom path. Not sure about this.)
-```
-conda install pytorch==1.12.0 torchvision==0.13.0 torchaudio==0.12.0 cudatoolkit=11.3 -c pytorch
-```
 
 ## ds_report
 ```
@@ -63,8 +60,13 @@ nvcc version ..................... 11.3
 deepspeed wheel compiled w. ...... torch 1.12, cuda 11.3
 ```
 
-## python -c "import torch; print(torch.__version__); print(torch.cuda.get_arch_list())"
+## torch
 ```
+conda install pytorch==1.12.0 torchvision==0.13.0 torchaudio==0.12.0 cudatoolkit=11.3 -c pytorch
+
+python -c "import torch; print(torch.__version__); print(torch.cuda.get_arch_list())"
+
+[OUTPUT]:
 1.12.1+cu113
 []
 ```
