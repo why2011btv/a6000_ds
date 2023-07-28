@@ -1,5 +1,11 @@
 # deepspeed env on A6000 48G GPU
 
+## tutorial
+https://2023.aclweb.org/downloads/acl2023-handbook-v3.pdf
+https://www.deepspeed.ai/tutorials/zero/
+https://zhuanlan.zhihu.com/p/640873481
+https://zhuanlan.zhihu.com/p/617491455
+
 ## python
 python=3.8
 ```
@@ -69,4 +75,87 @@ python -c "import torch; print(torch.__version__); print(torch.cuda.get_arch_lis
 [OUTPUT]:
 1.12.1+cu113
 []
+```
+
+## errors
+```
+nvcc fatal : Unsupported gpu architecture 'compute_86'
+```
+CUDA version https://stackoverflow.com/questions/69865825/nvcc-fatal-unsupported-gpu-architecture-compute-86
+
+```
+AttributeError: module 'triton.language' has no attribute 'constexpr'
+```
+triton version https://github.com/openai/triton/issues/625
+
+another triton version https://github.com/microsoft/DeepSpeed/issues/2099
+(need to first use triton 2.0.0 to install deepspeed, and then downgrade it to 1.0.0)
+
+```
+RTX A6000 with CUDA capability sm_86 is not compatible with the current PyTorch installation.
+The current PyTorch install supports CUDA capabilities sm_37 sm_50 sm_60 sm_70.
+```
+CUDA and torch version unmatch https://github.com/pytorch/pytorch/issues/52288
+
+
+```
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0x80 in position 64: invalid start byte
+...
+OSError: Unable to load weights from pytorch checkpoint file for '../alpaca_output/pytorch_model-00003-of-00003.bin'
+```
+Unknown yet https://github.com/tatsu-lab/stanford_alpaca/issues/250
+
+```
+RuntimeError: Expected one of cpu, cuda, xpu, mkldnn, opengl, opencl, ideep, hip, msnpu, xla, vulkan device type at start of device string: meta
+```
+torch version https://github.com/facebookresearch/metaseq/issues/88
+
+```
+AttributeError: 'FieldInfo' object has no attribute 'required'
+```
+pydantic version https://github.com/microsoft/DeepSpeed/issues/3963
+
+```
+RuntimeError: Default process group has not been initialized, please make sure to call init_process_group 
+```
+Unknown yet
+
+```
+ImportError: cannot import name 'COMMON_SAFE_ASCII_CHARACTERS' from 'charset_normalizer.constant'
+```
+python -m pip install charset-normalizer==2.1.0 https://github.com/huggingface/transformers/issues/21858
+
+```
+torchvision
+```
+corresponding version (torch) https://pypi.org/project/torchvision/
+
+```
+Unable to load weights from pytorch checkpoint file.
+```
+torch version https://github.com/huggingface/transformers/issues/4336
+
+```
+fused_adam.so: cannot open shared object file: No such file or directory
+```
+https://github.com/databrickslabs/dolly/issues/119
+
+```
+if args.local_rank == -1
+```
+https://stackoverflow.com/questions/58833652/what-does-local-rank-mean-in-distributed-deep-learning
+
+
+
+## cache
+```
+export HUGGINGFACE_HUB_CACHE=/shared/why16gzl/cache/huggingface/hub/
+```
+https://huggingface.co/docs/transformers/installation?highlight=transformers_cache#cache-setup
+
+# train
+```
+cd /shared/why16gzl/Repositories/DeepSpeedExamples/applications/DeepSpeed-Chat/training/step1_supervised_finetuning
+sbatch training_scripts/single_node/run_1.3b_lora.sh (nlpgpu-login)
+bash evaluation_scripts/run_prompt.sh (on morrison)
 ```
