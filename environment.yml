@@ -1,0 +1,11 @@
+name: a6000
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - pytorch==1.12.0
+  - cudatoolkit
+  - python=3.8
+  - torchaudio==0.12.0
+  - torchvision==0.13.0
+prefix: /shared/why16gzl/conda/miniconda38/envs/a6000
