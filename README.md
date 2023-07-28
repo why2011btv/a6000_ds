@@ -3,8 +3,8 @@
 ## tutorial
 https://2023.aclweb.org/downloads/acl2023-handbook-v3.pdf
 https://www.deepspeed.ai/tutorials/zero/
-https://zhuanlan.zhihu.com/p/640873481
-https://zhuanlan.zhihu.com/p/617491455
+DeepSpeed-Chat 打造类ChatGPT全流程 笔记一 https://zhuanlan.zhihu.com/p/640873481
+deepspeed安装踩坑实践 https://zhuanlan.zhihu.com/p/617491455
 
 ## python
 python=3.8
@@ -145,6 +145,9 @@ if args.local_rank == -1
 ```
 https://stackoverflow.com/questions/58833652/what-does-local-rank-mean-in-distributed-deep-learning
 
+Adding ```args.local_rank = -1``` would cause ```RuntimeError: Default process group has not been initialized, please make sure to call init_process_group.```
+
+Adding ```torch.distributed.init_process_group()``` would cause ```TypeError: init_process_group() missing 1 required positional argument: 'backend'```
 
 
 ## cache
